@@ -1,4 +1,4 @@
-package com.poc.pocrestfulapi;
+package com.poc.pocrestfulapi.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

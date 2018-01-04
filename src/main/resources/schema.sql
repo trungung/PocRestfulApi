@@ -1,0 +1,6 @@
+CREATE TABLE dog (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(100) NOT NULL,
+  rescued DATE NOT NULL,
+  vaccinated TINYINT(1) NOT NULL,
+  PRIMARY KEY (id));
