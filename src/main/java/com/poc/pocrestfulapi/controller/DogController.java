@@ -1,21 +1,20 @@
 package com.poc.pocrestfulapi.controller;
 
 import com.poc.pocrestfulapi.model.Dog;
+import com.poc.pocrestfulapi.model.Employee;
 import com.poc.pocrestfulapi.repository.DogRepository;
 import com.poc.pocrestfulapi.service.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @RestController
+@RequestMapping("/dog")
 public class DogController {
 
     @Autowired
@@ -35,13 +34,10 @@ public class DogController {
             dogModelList = new ArrayList();
             System.out.println("q is = " + q);
             dogrisklist = dogservice.atriskdogs(q);
-            for (String name: dogrisklist) {
-                System.out.println("Dogs in repository are : " + dogrepository.findAll());
-                Dog doggy = dogrepository.findByName(name);
-                System.out.println(doggy.toString() + "doggy name : " + doggy.getName());
-                dogModelList.add(doggy);
-                System.out.println("This dog's name is : " + doggy.getName());
-            }
+//            for (String name: dogrisklist) {
+//                Dog doggy = dogrepository.findByName(name);
+//                dogModelList.add(doggy);
+//            }
         }
         model.addAttribute("search", dogModelList);
 
@@ -49,6 +45,12 @@ public class DogController {
 
         return "index";
 
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping(value = "/dogs")
+    public List<Dog> getDogs() {
+        return (List<Dog>) dogrepository.findAll();
     }
 
     @PostMapping(value = "/")
