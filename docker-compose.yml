@@ -10,7 +10,7 @@ services:
 
  restful-api-service:
     restart: always
-    #build: ./src/main/docker
+    build: ./src/main/docker
     image: springio/poc-restful-api
     depends_on:
       - docker-mysql
