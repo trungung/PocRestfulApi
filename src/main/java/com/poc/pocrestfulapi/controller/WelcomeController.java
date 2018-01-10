@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class WelcomeResource {
+public class WelcomeController {
 
     @Autowired
     private BasicConfiguration configuration;

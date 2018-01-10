@@ -1,17 +1,31 @@
 version: '2'
 
 services:
+ nginx:
+    container_name: nginx-service
+    image: nginx:1.13
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+
  docker-mysql:
+    container_name: docker-mysql
     image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=poc_restful_api
       - MYSQL_PASSWORD=root
+    ports:
+      - "3306:3306"
 
  restful-api-service:
+    container_name: service-restful-api
     restart: always
-    build: ./src/main/docker
-    image: springio/poc-restful-api
+    #build: ./src/main/docker
+    #command: mvn clean package docker:build -DskipTests=true
+    image: trungung/poc-restful-api
     depends_on:
       - docker-mysql
     ports:

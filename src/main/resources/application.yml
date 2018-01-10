@@ -1,0 +1,28 @@
+# ===================================================================
+# Spring Boot configuration for the default profile.
+# ===================================================================
+app:
+  name: PocRestfulAPI
+
+# Profiles configuration
+spring:
+  profiles: dev
+
+## Swagger configuration
+#swagger:
+#  default-include-pattern: /api/.*
+#  title: Poc RestApi
+#  description: The API Documentation
+#  version: 1.0
+#
+## Logging aspect configuration
+#logging-aspect:
+#  enable: false
+#
+server:
+  port: 8080
+  contextPath: /api
+
+#security:
+#  user:
+#  password: weak

@@ -1,7 +1,6 @@
 package com.poc.pocrestfulapi.controller;
 
 import com.poc.pocrestfulapi.model.Dog;
-import com.poc.pocrestfulapi.model.Employee;
 import com.poc.pocrestfulapi.repository.DogRepository;
 import com.poc.pocrestfulapi.service.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/dog")
+@RequestMapping("/dogs")
 public class DogController {
 
     @Autowired
@@ -48,36 +47,27 @@ public class DogController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    @GetMapping(value = "/dogs")
     public List<Dog> getDogs() {
         return (List<Dog>) dogrepository.findAll();
     }
 
-    @PostMapping(value = "/")
-    public String adddog(@RequestParam("name") String name,
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Dog getDpg(@PathVariable("id") long id) {
+        return dogrepository.findOne(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void addDog(@RequestParam("name") String name,
                          @RequestParam("rescued") @DateTimeFormat(pattern = "yyyy-MM-dd") Date rescued,
-                         @RequestParam("vaccinated") Boolean vaccinated, Model model) {
+                         @RequestParam("vaccinated") Boolean vaccinated) {
         dogservice.addADog(name, rescued, vaccinated);
         System.out.println("name = " + name + ",rescued = " + rescued + ", vaccinated = " + vaccinated);
-        return "redirect:/";
     }
 
     @PostMapping(value = "/delete")
-    public String deleteDog(@RequestParam("name") String name,
+    public void deleteDog(@RequestParam("name") String name,
                             @RequestParam("id") Long id) {
         dogservice.deleteADOG(name, id);
         System.out.println("Dog named = " + name + "was removed from our database. Hopefully he or she was adopted.");
-        return "redirect:/";
-
     }
-
-    @PostMapping(value = "/genkey")
-    public String genkey(@RequestParam("name") String name,
-                         @RequestParam("rescued") @DateTimeFormat(pattern = "yyyy-MM-dd") Date rescued,
-                         @RequestParam("vaccinated") Boolean vaccinated, Model model) {
-        dogservice.getGeneratedKey(name, rescued, vaccinated);
-        System.out.println("name = " + name + ",rescued = " + rescued + ", vaccinated = " + vaccinated);
-        return "redirect:/";
-    }
-
 }

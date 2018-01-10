@@ -1,0 +1,25 @@
+# ===================================================================
+# Spring Boot configuration for the development profile.
+# ===================================================================
+
+welcome:
+  message: Welcome message from property file! Welcome to ${app.name} in development
+
+spring:
+
+  profiles: staging
+
+  datasource:
+    url: jdbc:h2:file:~/test;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    initialize: true # Populate the database using 'data.sql'.
+    username: root
+    password: root
+#
+#  h2:
+#    console.enabled: true
+#    console.path: /h2-console
+
+## Logging configuration
+#logging:
+#  logging.level.org.springframework.web.servlet: DEBUG
