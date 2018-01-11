@@ -1,17 +1,17 @@
 version: '2'
 
 services:
- nginx:
-    container_name: nginx-service
-    image: nginx:1.13
-    restart: always
-    ports:
-      - 80:80
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
+# nginx:
+#    container_name: nginx-service
+#    image: nginx:1.13
+#    restart: always
+#    ports:
+#      - 80:80
+#    volumes:
+#      - ./nginx/conf.d:/etc/nginx/conf.d
 
- docker-mysql:
-    container_name: docker-mysql
+ mysql:
+    container_name: mysql
     image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=root
@@ -27,11 +27,11 @@ services:
     #command: mvn clean package docker:build -DskipTests=true
     image: trungung/poc-restful-api
     depends_on:
-      - docker-mysql
+      - mysql
     ports:
       - 8080:8080
     environment:
-      - DATABASE_HOST=docker-mysql
+      - DATABASE_HOST=mysql
       - DATABASE_USER=root
       - DATABASE_PASSWORD=root
       - DATABASE_NAME=poc_restful_api

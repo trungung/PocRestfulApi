@@ -5,9 +5,14 @@
 welcome:
   message: Welcome message from property file! Welcome to ${app.name} in development
 
+basic:
+  message: Dynamic Message in DEV
+  value: true
+  number: 100
+
 spring:
 
-  profiles: staging
+  profiles: dev
 
   datasource:
     url: jdbc:h2:file:~/test;DB_CLOSE_ON_EXIT=FALSE
@@ -15,11 +20,11 @@ spring:
     initialize: true # Populate the database using 'data.sql'.
     username: root
     password: root
-#
-#  h2:
-#    console.enabled: true
-#    console.path: /h2-console
 
-## Logging configuration
-#logging:
-#  logging.level.org.springframework.web.servlet: DEBUG
+  h2:
+    console.enabled: true
+    console.path: /h2-console
+
+# Logging configuration
+logging:
+  logging.level.org.springframework.web.servlet: DEBUG

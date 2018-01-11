@@ -1,56 +1,59 @@
-## ===================================================================
-## Spring Boot configuration for the production profile.
-## ===================================================================
-#
-#welcome:
-#  message: Welcome message from property file! Welcome to ${app.name} in production
-#
-#spring:
-#  profiles: prod
-#  datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://docker-mysql:3306/poc_restful_api
-#    username: root
-#    password: root
-#    driver: com.mysql.jdbc.Driver
-#    initialize: true # Populate the database using 'data.sql'.
-#
-#  h2:
-#    console.enabled: false
-#    console.path: /h2-console
-#
-#  jpa:
-#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-#    database: MYSQL
-#    show-sql: true
-#    properties:
-#      hibernate.ddl-auto: validate
-#      hibernate.id.new_generator_mappings: true
-#      hibernate.cache.use_second_level_cache: true
-#      hibernate.cache.use_query_cache: false
-#      hibernate.generate_statistics: false
-#
-## Port configuration
-#server:
-#  port: 8080
-#  contextPath: /api
-#security:
-#  user:
-#  password: weak
-#
-## Logging aspect configuration
-#logging-aspect:
-#  enable: true
-#
-## Security configuration
-#jwt:
-#  app-name: Poc-Restful-API
-#  secret-key: a4f2aa63cdc8dcaa5e92ea8fd19fca749b61c343
-#  expires-in: 360000 #second
-#  token-prefix: Bearer
-#
-#  # Token invitation
-#  invitation-expires-in: 86400 #second
-#
-#  # Token reset password
-#  reset-password-expires-in: 1800 #second
+# ===================================================================
+# Spring Boot configuration for the production profile.
+# ===================================================================
+
+welcome:
+  message: Welcome message from property file! Welcome to ${app.name} in production
+
+basic:
+  message: Dynamic Message in PRODUCTION
+
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://docker-mysql:3306/poc_restful_api
+    username: root
+    password: root
+    driver: com.mysql.jdbc.Driver
+    initialize: true # Populate the database using 'data.sql'.
+
+  h2:
+    console.enabled: false
+    console.path: /h2-console
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: MYSQL
+    show-sql: true
+    properties:
+      hibernate.ddl-auto: validate
+      hibernate.id.new_generator_mappings: true
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+
+# Port configuration
+server:
+  port: 8080
+  contextPath: /api
+security:
+  user:
+  password: weak
+
+# Logging aspect configuration
+logging-aspect:
+  enable: true
+
+# Security configuration
+jwt:
+  app-name: Poc-Restful-API
+  secret-key: a4f2aa63cdc8dcaa5e92ea8fd19fca749b61c343
+  expires-in: 360000 #second
+  token-prefix: Bearer
+
+  # Token invitation
+  invitation-expires-in: 86400 #second
+
+  # Token reset password
+  reset-password-expires-in: 1800 #second

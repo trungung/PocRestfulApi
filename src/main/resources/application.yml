@@ -6,23 +6,24 @@ app:
 
 # Profiles configuration
 spring:
-  profiles: dev
+  profiles:
+    active: container
 
-## Swagger configuration
-#swagger:
-#  default-include-pattern: /api/.*
-#  title: Poc RestApi
-#  description: The API Documentation
-#  version: 1.0
-#
-## Logging aspect configuration
-#logging-aspect:
-#  enable: false
-#
+# Swagger configuration
+swagger:
+  default-include-pattern: /api/.*
+  title: Poc RestApi
+  description: The API Documentation
+  version: 1.0
+
+# Logging aspect configuration
+logging-aspect:
+  enable: false
+
 server:
   port: 8080
   contextPath: /api
 
-#security:
-#  user:
-#  password: weak
+security:
+  user:
+  password: weak
